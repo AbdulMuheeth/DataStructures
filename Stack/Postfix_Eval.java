@@ -1,6 +1,6 @@
 public class Postfix_Eval {
     public static void main(String arg[]){
-       String postfix = "231*+9-";
+       String postfix = "562+*24/-";
        Eval(postfix);
     }
 

@@ -1,67 +1,92 @@
+import java.util.Scanner;
 
-class Imple_Queue{
-    int rare=-1;
-    int front=-1;
-    int top=-1;
+class imple{
+    int front,rear;
     int max;
-    int arr[];
-    public Imple_Queue(int mx){
-        max = mx;
-        arr= new int [max];
+    int queue[];
+    imple(){
+        Scanner sc = new Scanner(System.in);
+        this.max = sc.nextInt();
+        System.out.println("Enter the size of the queue");
+        queue = new int[max];
+        this.front=0;
+        this.rear=0;
+    }
+    boolean isfull(){
+        return (max-1)==front?true:false;
+    }
+    boolean isempty(){
+        return (rear==0 && front==0)?true:false;
+    }
+    void Enqueue(int val){
+        if(!isfull())
+            queue[rear++]=val;
+        else
+            System.out.println("Queue overflowed");
+
     }
 
-    public boolean isFull(){
-        return max==top;
-    }
-    public boolean isEmpty(){
-        return top==-1;
-    }
-
-    public void enQueue(int inpt){
-        if(!isFull()){
-            rare=(rare+1)%max;
-            arr[rare]=inpt;
-
-            top++;
+    int Dequeue() {
+        if (!isempty()){
+            int vl = queue[front];
+            queue[front]=0;
+            front++;
+//            queue[front] = 0;
+//            front++;
+//            for(int i=front;i!=(rear-1);i++){
+//                try {
+//                    queue[i] = queue[i + 1];
+//                }
+//                catch (ArrayIndexOutOfBoundsException AIOE){
+//                    System.out.println(AIOE);
+//                }
+//            }
+//            front++;
+//            queue[max-1]=0;
+//            max = rear-1;
+            return vl;
         }
         else{
+            System.out.println("Queue underflowed");
 
-            System.out.println("Queue OverFlow");
-        }
-    }
-
-    public int deQueue(){
-        if(!isEmpty()){
-            front=(front+1)%max;
-            int data = arr[front];
-
-            top--;
-            return data;
-        }
-        else{
-            System.out.println("queue underflow");
             return -1;
         }
+
     }
 
-    public void viewQueue(){
-        for(int i=0;i<top;i++){
-            System.out.print(i+" "+arr[i]);
-        }
+    void display(){
         System.out.println();
-    }
+        if(!isempty()){
+            for(int i=0;i<max;i++){
+                System.out.print(queue[i]+"->");
+            }
+            System.out.print("null");
+        }
+        else{
+            System.out.print("queue underflowed");
+        }
 
+    }
 
 }
+
+
+
+
 public class Queue {
-    public static void main(String args[]){
-        Imple_Queue Qe = new Imple_Queue(4);
-        Qe.enQueue(1);
-        Qe.enQueue(2);
-        Qe.enQueue(3);
-        Qe.enQueue(4);
-        Qe.viewQueue();
-        Qe.deQueue();
-        Qe.viewQueue();
+    public static void main (String args[]){
+        imple que = new imple();
+        que.Enqueue(1);
+        que.Enqueue(2);
+        que.Enqueue(3);
+        que.Enqueue(4);
+        que.Enqueue(5);
+        que.display();
+        que.Dequeue();
+        que.Dequeue();
+        que.Dequeue();
+        que.Dequeue();
+        que.Dequeue();
+        que.display();
     }
 }

@@ -1,6 +1,6 @@
 public class Infix_Postfix {
     public static void main(String args[]) {
-        String inf = "1+2*(3^4-5)^(6+7*8)-9";
+        String inf = "A+B*C-D/E*H";
         Convert(inf);
     }
 
