@@ -35,7 +35,7 @@ public class QuickSortNew
 		
 		while(left!=right){
 
-			while((a[right]>=a[pivot]) && (left != right))
+			while((a[right]>=a[pivot]) && (left != right)) //lower element from the right
 			right--;
 			if(left!=right){
 				temp=a[pivot];
@@ -44,12 +44,13 @@ public class QuickSortNew
 				
 				pivot=right;
 			}
-			while((a[left]<=a[pivot]) && (left!=right))
+			while((a[left]<=a[pivot]) && (left!=right))  //highest element from the left
 				left++;
 			if(left!=right){
 				temp=a[pivot];
 				a[pivot]=a[left];
 				a[left]=temp;
+
 				pivot=left;
 			}
 		

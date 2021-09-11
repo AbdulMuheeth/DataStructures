@@ -146,16 +146,20 @@ public class PolynomialRepresentation {
         obj.showPoly(second);
 
         third = obj.addPoly(first,second);
-        fourth = obj.subPoly(first,second);
         fifth = obj.mulPoly(first,second);
+        fourth = obj.subPoly(first,second);
+
 
         System.out.println("\n\nAfter adding...\n");
         obj.showPoly(third);
+
 
         System.out.println("\n\nAfter subtracting...\n");
         obj.showPoly(fourth);
 
         System.out.println("\n\nAfter multiplying...\n");
         obj.showPoly(fifth);
+
+
     }
 }

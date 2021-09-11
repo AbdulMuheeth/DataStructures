@@ -1,100 +1,58 @@
-import java.util.Scanner;
-
-class Robinimple{
+class Queue_new{
     int front,rear;
-    int max;
+    int max = 40;
     int queue[];
-    Robinimple(){
-        Scanner sc = new Scanner(System.in);
-        this.max = sc.nextInt();
-        System.out.println("Enter the size of the queue");
-        queue = new int[max];
+    Queue_new(){
         this.front=0;
         this.rear=0;
+        queue =  new int[40];
     }
-    boolean isfull(){
-        return (max-1)==front?true:false;
+
+    public boolean queueFull(){
+        return rear==max-1;
     }
-    boolean isempty(){
-        return (rear==0 && front==0)?true:false;
+    public boolean queueEmpty(){
+        return rear==front;
     }
-    void Enqueue(int val){
-        if(!isfull())
-            queue[rear++]=val;
+
+    public void enqueue(int data){
+        if(!queueFull())
+            queue[rear++]=data;
         else
             System.out.println("Queue overflowed");
 
     }
 
-    int Dequeue() {
-        if (!isempty()){
-            int vl = queue[front];
-            queue[front]=0;
-            front++;
-            return vl;
+    public int dequeue(){
+        if(!queueEmpty()) {
+            int val = queue[front++];
+            return val;
         }
-        else{
-            System.out.println("Queue underflowed");
-
+        else {
+            System.out.println("Queue Underflowed");
             return -1;
         }
-
     }
-
-    void display(){
-        System.out.println();
-        if(!isempty()){
-            for(int i=0;i<max;i++){
-                System.out.print(queue[i]+"->");
-            }
-            System.out.print("null");
-        }
-        else{
-            System.out.print("queue underflowed");
-        }
-
-    }
-
 }
 
-public class RoundRobinQueue {
+public class RoundRobinQueue{
+    public static void main(String args[]) {
+        Queue_new q = new Queue_new();
+        int burst_time[] = {3, 7, 4, 3, 8, 12};
+        int quantum = 3;
+        System.out.println("The process of the execution is :");
+        for(int i=0;i<6;i++)
+            q.enqueue(i);
+        while(!q.queueEmpty()){
+            int pid = q.dequeue();
+            System.out.print("p"+pid+"  ");
+            burst_time[pid]-=quantum;
+            if(burst_time[pid]>0)
+                q.enqueue(pid);
 
-    public static void main(String args[]){
-//        System.out.println("Enter the no.of process");
-//        Scanner sc = new Scanner(System.in);
-//        int n = sc.nextInt();
-//        String process[] = new String[n];
-//        int bursttime[] = new int[n];
-        Robinimple q= new Robinimple();
-
-        int process[] = {1,2,3};
-        int bursttime[] ={10,5,8};
-        int quantum = 2;
-        int val=0;
-        int waitingtime=0;
-
-        while(true){
-            for(int i=0;i<bursttime.length;i++){
-                if(bursttime[i]!=0) {
-                    if(bursttime[i]>=quantum) {
-                        waitingtime +=quantum;
-                        bursttime[i] -= quantum;
-                    }
-                    else if(bursttime[i]<quantum){
-                        waitingtime += bursttime[i];
-                        bursttime[i]=0;
-                    }
-                    q.Enqueue(process[i]);
-                }
-                else{
-                    ++val;
-                }
-            }
-            if(val==bursttime.length)
-                break;
         }
-        q.display();
-        System.out.println(waitingtime);
-
+        for(int i=0;i<40;i++){
+            System.out.println(q.queue[i]);
+        }
     }
 }

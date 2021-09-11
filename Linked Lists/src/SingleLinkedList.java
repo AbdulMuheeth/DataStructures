@@ -1,19 +1,19 @@
 import java.util.Scanner;
 
-class Node{
+class Node1{
     String data;
-    Node next;
-    public Node(String nm){
+    Node1 next;
+    public Node1(String nm){
         data = nm;
         next = null;
     }
 }
 
-class LinkedList{
-    Node head;
+class LinkedList1{
+    Node1 head;
     Scanner sc;
 
-    public LinkedList(){
+    public LinkedList1(){
         head = null;
         sc = new Scanner(System.in);
     }
@@ -33,8 +33,8 @@ class LinkedList{
 
     }
     public void insert(String data){
-        Node temp,t;
-        temp=new Node(data);
+        Node1 temp,t;
+        temp=new Node1(data);
         if (head==null){
             head=temp;
         }
@@ -47,7 +47,7 @@ class LinkedList{
     }
 
     void ViewLinkedList(){
-        Node temp=head;
+        Node1 temp=head;
         while(temp!=null){
             System.out.print(temp.data+" -> ");
             temp=temp.next;
@@ -59,10 +59,11 @@ class LinkedList{
 
 public class SingleLinkedList {
     public static void main(String [] args) {
-        LinkedList Llist = new LinkedList();
+        LinkedList1 Llist = new LinkedList1();
 
         Llist.ViewLinkedList();
         Llist.CreateList();
         Llist.ViewLinkedList();
+
     }
 }
